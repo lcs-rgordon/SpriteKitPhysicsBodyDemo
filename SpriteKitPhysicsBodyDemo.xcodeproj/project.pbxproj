@@ -24,6 +24,7 @@
 		0EE1B7F223994659002F4BB8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0EE1B7F523994659002F4BB8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0EE1B7F723994659002F4BB8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0EE1B7FE2399469B002F4BB8 /* Physics.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Physics.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +41,7 @@
 		0EE1B7DD23994656002F4BB8 = {
 			isa = PBXGroup;
 			children = (
+				0EE1B7FD2399466B002F4BB8 /* Playgrounds */,
 				0EE1B7E823994656002F4BB8 /* SpriteKitPhysicsBodyDemo */,
 				0EE1B7E723994656002F4BB8 /* Products */,
 			);
@@ -65,6 +67,14 @@
 				0EE1B7F723994659002F4BB8 /* Info.plist */,
 			);
 			path = SpriteKitPhysicsBodyDemo;
+			sourceTree = "<group>";
+		};
+		0EE1B7FD2399466B002F4BB8 /* Playgrounds */ = {
+			isa = PBXGroup;
+			children = (
+				0EE1B7FE2399469B002F4BB8 /* Physics.playground */,
+			);
+			path = Playgrounds;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
