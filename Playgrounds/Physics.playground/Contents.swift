@@ -101,24 +101,24 @@ scene.addChild(dash)
 - Callout(Experiment):
 Remove the comments for each block of code below, one by one. Run the scene after each comment you remove. What happens?
  */
-//square.physicsBody = SKPhysicsBody(texture: square.texture!,
-//                                   alphaThreshold: 0.1,
-//                                   size: square.size)
+square.physicsBody = SKPhysicsBody(texture: square.texture!,
+                                   alphaThreshold: 0.1,
+                                   size: square.size)
 
-//circle.physicsBody = SKPhysicsBody(texture: circle.texture!,
-//                                   alphaThreshold: 0.1,
-//                                   size: circle.size)
+circle.physicsBody = SKPhysicsBody(texture: circle.texture!,
+                                   alphaThreshold: 0.1,
+                                   size: circle.size)
 
-//star.physicsBody = SKPhysicsBody(texture: star.texture!,
-//                                 alphaThreshold: 0.1,
-//                                 size: star.size)
+star.physicsBody = SKPhysicsBody(texture: star.texture!,
+                                 alphaThreshold: 0.1,
+                                 size: star.size)
 
-//dash.physicsBody = SKPhysicsBody(texture: dash.texture!,
-//                                 alphaThreshold: 0.1,
-//                                 size: dash.size)
+dash.physicsBody = SKPhysicsBody(texture: dash.texture!,
+                                 alphaThreshold: 0.1,
+                                 size: dash.size)
 
 // Make the dash not be affected by gravity
-//dash.physicsBody?.affectedByGravity = false
+dash.physicsBody?.affectedByGravity = false
 /*:
 ### More about physics bodies
 "The circle body is a **dynamic** physics body — that is, it moves. It’s solid, has mass and can collide with any other type of physics body. The physics simulation can apply various forces to move volume-based bodies."
@@ -140,7 +140,7 @@ Remove the comments for each block of code below, one by one. Run the scene afte
  
  */
 // Make an edge loop at the boundaries of the scene
-//scene.physicsBody = SKPhysicsBody(edgeLoopFrom: scene.frame)
+scene.physicsBody = SKPhysicsBody(edgeLoopFrom: scene.frame)
 
 /*:
  ### Helper functions
@@ -244,24 +244,27 @@ circle.run(sequenceMoveUpShortDelay)
  
  Sprites can be programmed "ahead of time" to move forever in a certain pattern.
  
+ - Callout(Experiment):
+    Try uncommenting the lines below to make the dash move back and forth.
+ 
  */
 
-// Define actions to be used to make the dash move back and forth
-let actionWaitHalfSecond = SKAction.wait(forDuration: 0.5)
-let actionMoveLeft = SKAction.moveBy(x: -100, y: 0, duration: 2)
-let actionMoveRight = SKAction.moveBy(x: 100, y: 0, duration: 2)
-
-// Define a back and forth sequence
-let sequenceBackAndForth = SKAction.sequence([actionMoveLeft,
-                                              actionWaitHalfSecond,
-                                              actionMoveRight,
-                                              actionWaitHalfSecond])
-
-// This action defines a back and forth movement that never stops
-let actionBackAndForthForever = SKAction.repeatForever(sequenceBackAndForth)
-
-// Run the sequence on the dash
-dash.run(actionBackAndForthForever)
+//// Define actions to be used to make the dash move back and forth
+//let actionWaitHalfSecond = SKAction.wait(forDuration: 0.5)
+//let actionMoveLeft = SKAction.moveBy(x: -100, y: 0, duration: 2)
+//let actionMoveRight = SKAction.moveBy(x: 100, y: 0, duration: 2)
+//
+//// Define a back and forth sequence
+//let sequenceBackAndForth = SKAction.sequence([actionMoveLeft,
+//                                              actionWaitHalfSecond,
+//                                              actionMoveRight,
+//                                              actionWaitHalfSecond])
+//
+//// This action defines a back and forth movement that never stops
+//let actionBackAndForthForever = SKAction.repeatForever(sequenceBackAndForth)
+//
+//// Run the sequence on the dash
+//dash.run(actionBackAndForthForever)
 /*:
 - Callout(Consider):
 Why does the circle bounce around rather than move smoothly up?
