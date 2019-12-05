@@ -47,7 +47,7 @@ PlaygroundSupport.PlaygroundPage.current.liveView = view
  This means sprites in your games or animations can be images you find online, or images you create yourself (for example, using an iPad, or by scanning hand-drawn images).
  */
 
-// Make a three sprites (nodes) of various shapes
+// Make a four sprites (nodes) of various shapes
 
 // 1. A square
 let square = SKSpriteNode(imageNamed: "square")
@@ -69,16 +69,23 @@ circle.position = CGPoint(x: scene.size.width * 0.50,
 let star = SKSpriteNode(imageNamed: "star")
 star.name = "shape"
 star.position = CGPoint(x: scene.size.width * 0.75,
-                            y: scene.size.height * 0.50)    // Right side
+                        y: scene.size.height * 0.50)        // Right side
+
+// 4. A dash
+let dash = SKSpriteNode(imageNamed: "dash")
+dash.name = "anotherShape"
+dash.position = CGPoint(x: scene.size.width * 0.5,
+                        y: scene.size.height * 0.75)        // Top centre
 
 /*:
 - Callout(Experiment):
-Try commenting out one or more of the following three lines of code. What happens?
+Try commenting out one or more of the following four lines of code. What happens?
  */
 // Finally, actually go ahead and add the nodes to the scene
 scene.addChild(square)
 scene.addChild(circle)
 scene.addChild(star)
+scene.addChild(dash)
 
 
 /*:
@@ -106,6 +113,12 @@ Remove the comments for each block of code below, one by one. Run the scene afte
 //                                 alphaThreshold: 0.1,
 //                                 size: star.size)
 
+//dash.physicsBody = SKPhysicsBody(texture: dash.texture!,
+//                                 alphaThreshold: 0.1,
+//                                 size: dash.size)
+
+// Make the dash not be affected by gravity
+//dash.physicsBody?.affectedByGravity = false
 /*:
 ### More about physics bodies
 "The circle body is a **dynamic** physics body — that is, it moves. It’s solid, has mass and can collide with any other type of physics body. The physics simulation can apply various forces to move volume-based bodies."
@@ -212,7 +225,7 @@ let actionLeftwardMovement = SKAction.move(by: leftThisMuch, duration: 2)
 let actionUpwardsMovement = SKAction.move(by: upThisMuch, duration: 3)
 
 // Define a sequence that makes a node wait five seconds, then move left
-let sequenceMoveLeft = SKAction.sequence([actionFiveSecondWait,
+let sequenceMoveLeftShortDelay = SKAction.sequence([actionFiveSecondWait,
                                           actionLeftwardMovement])
 
 // Define a sequence that makes a node wait for 10 seconds, then move up
@@ -221,10 +234,34 @@ let sequenceMoveUpShortDelay = SKAction.sequence([actionFiveSecondWait,
                                                   actionUpwardsMovement])
 
 // Run the "move left" sequence on the star node
-star.run(sequenceMoveLeft)
+star.run(sequenceMoveLeftShortDelay)
 
 // Run the "move up" sequence on the circle node
 circle.run(sequenceMoveUpShortDelay)
+
+/*:
+ ### Pre-programmed move sequences
+ 
+ Sprites can be programmed "ahead of time" to move forever in a certain pattern.
+ 
+ */
+
+// Define actions to be used to make the dash move back and forth
+let actionWaitHalfSecond = SKAction.wait(forDuration: 0.5)
+let actionMoveLeft = SKAction.moveBy(x: -100, y: 0, duration: 2)
+let actionMoveRight = SKAction.moveBy(x: 100, y: 0, duration: 2)
+
+// Define a back and forth sequence
+let sequenceBackAndForth = SKAction.sequence([actionMoveLeft,
+                                              actionWaitHalfSecond,
+                                              actionMoveRight,
+                                              actionWaitHalfSecond])
+
+// This action defines a back and forth movement that never stops
+let actionBackAndForthForever = SKAction.repeatForever(sequenceBackAndForth)
+
+// Run the sequence on the dash
+dash.run(actionBackAndForthForever)
 /*:
 - Callout(Consider):
 Why does the circle bounce around rather than move smoothly up?
