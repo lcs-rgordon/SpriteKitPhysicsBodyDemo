@@ -118,23 +118,11 @@ star.physicsBody = SKPhysicsBody(texture: star.texture!, alphaThreshold: 0.1, si
 scene.physicsBody = SKPhysicsBody(edgeLoopFrom: scene.frame)
 
 /*:
- ### Create a lot of sand particles
- 
- This code repeatedly adds sand particles to the scene.
- */
-
-// Drop a lot of sand particles from top of screen
-let actionRun = SKAction.run(spawnSand)
-let actionWait = SKAction.wait(forDuration: 1.0)
-let sequence = SKAction.sequence([actionRun, actionWait])
-let actionRepeat = SKAction.repeat(sequence, count: 100)
-scene.run(actionRepeat)
-
-
-/*:
  ### Helper functions
  
- These functions are used by the code above.
+ These functions are used by the code below.
+ 
+ Consider expanding each function to understand how it works.
  
  */
 // This function returns a random number
@@ -178,3 +166,18 @@ func spawnSand() {
     // Add node to the scene
     scene.addChild(sand)
 }
+
+/*:
+ ### Create a lot of sand particles
+ 
+ This code repeatedly adds sand particles to the scene.
+ */
+
+// Drop a lot of sand particles from top of screen
+let actionRun = SKAction.run(spawnSand)
+let actionWait = SKAction.wait(forDuration: 1.0)
+let sequence = SKAction.sequence([actionRun, actionWait])
+let actionRepeat = SKAction.repeat(sequence, count: 100)
+scene.run(actionRepeat)
+
+
