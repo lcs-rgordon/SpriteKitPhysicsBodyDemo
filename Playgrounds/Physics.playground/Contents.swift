@@ -46,16 +46,33 @@ PlaygroundSupport.PlaygroundPage.current.liveView = view
  
  This means sprites in your games or animations can be images you find online, or images you create yourself (for example, using an iPad, or by scanning hand-drawn images.
  */
-/*
-// Make a few sprites (nodes) based on various shapes
+
+// Make a three sprites (nodes) of various shapes
+
+// 1. A square
 let square = SKSpriteNode(imageNamed: "square")
 /*:
  - Callout(Naming nodes):
  By [naming nodes with the same identifier](https://developer.apple.com/documentation/spritekit/sknode/1483136-name) we can later "find" and "do something with" all nodes that share this identifer.
  */
 square.name = "shape"
-// Position in bottom left corner of screen
 square.position = CGPoint(x: scene.size.width * 0.25,
-                          y: scene.size.height * 0.50)
+                          y: scene.size.height * 0.50)      // Left side of scene
 
-*/
+// 2. A circle
+let circle = SKSpriteNode(imageNamed: "circle")
+circle.name = "shape"
+circle.position = CGPoint(x: scene.size.width * 0.50,
+                          y: scene.size.height * 0.50)      // Centre of scene
+
+// 3. A triangle
+let triangle = SKSpriteNode(imageNamed: "triangle")
+triangle.name = "shape"
+triangle.position = CGPoint(x: scene.size.width * 0.75,
+                            y: scene.size.height * 0.50)    // Right side of scene
+
+// Finally, actually go ahead and add the nodes to the scene
+// STUDENTS: Try commenting out one or more of the following three lines of code. What happens?
+scene.addChild(square)
+scene.addChild(circle)
+scene.addChild(triangle)
