@@ -65,17 +65,20 @@ circle.name = "shape"
 circle.position = CGPoint(x: scene.size.width * 0.50,
                           y: scene.size.height * 0.50)      // Centre of scene
 
-// 3. A triangle
-let triangle = SKSpriteNode(imageNamed: "triangle")
-triangle.name = "shape"
-triangle.position = CGPoint(x: scene.size.width * 0.75,
+// 3. A star
+let star = SKSpriteNode(imageNamed: "star")
+star.name = "shape"
+star.position = CGPoint(x: scene.size.width * 0.75,
                             y: scene.size.height * 0.50)    // Right side of scene
 
+/*:
+- Callout(Experiment):
+Try commenting out one or more of the following three lines of code. What happens?
+ */
 // Finally, actually go ahead and add the nodes to the scene
-// STUDENTS: Try commenting out one or more of the following three lines of code. What happens?
 scene.addChild(square)
 scene.addChild(circle)
-scene.addChild(triangle)
+scene.addChild(star)
 
 
 /*:
@@ -84,13 +87,33 @@ scene.addChild(triangle)
  
  That might sound complicated. It's simple, though – all you need to understand is that you can tell SpriteKit how you want a node to move (velocity), whether you want it to slow down (due to friction), and whether it is affected by gravity.
  
+ To have nodes be affected by the SpriteKit physics, we must define *bodies*, or edges, for the nodes.
+ 
  */
-// Define physics bodies based on their textures (images) and their current size
-// Essentially, this is defining the "edge" of the node (to allow for collision detection, for example)
-// STUDENTS: Remove the comments below, one by one. Run the scene after each comment you remove. What happens?
+/*:
+- Callout(Experiment):
+Remove the comments below, one by one. Run the scene after each comment you remove. What happens?
+ */
 
-//square.physicsBody = SKPhysicsBody(texture: square.texture!, size: square.size)
-//circle.physicsBody = SKPhysicsBody(texture: circle.texture!, size: circle.size)
-//triangle.physicsBody = SKPhysicsBody(texture: triangle.texture!, size: triangle.size)
+square.physicsBody = SKPhysicsBody(texture: square.texture!, size: square.size)
+circle.physicsBody = SKPhysicsBody(texture: circle.texture!, size: circle.size)
+star.physicsBody = SKPhysicsBody(texture: star.texture!, size: star.size)
 
+/*:
+### More about physics bodies
+"The circle body is a **dynamic** physics body — that is, it moves. It’s solid, has mass and can collide with any other type of physics body. The physics simulation can apply various forces to move volume-based bodies."
 
+"The edge loop body is a **static** volume-less physics body — that is, it does not move. As the name implies, an edge loop only defines the edges of a shape. It doesn’t have mass, cannot collide with other edge loop bodies and is never moved by the physics simulation. Other objects can be inside or outside its edges."
+
+"The most common use for an edge loop body is to define collision areas to describe your game’s boundaries, ground, walls, trigger areas or any other type of unmoving collision space."
+
+![example](types-of-physics-bodies.png "Types of physics bodies")
+*/
+
+/*:
+ Try uncommenting the line below the "Make an edge loop at the boundaries of the scene" comment.
+ 
+ What happens to the circle now?
+ */
+// Make an edge loop at the boundaries of the scene
+scene.physicsBody = SKPhysicsBody(edgeLoopFrom: scene.frame)
