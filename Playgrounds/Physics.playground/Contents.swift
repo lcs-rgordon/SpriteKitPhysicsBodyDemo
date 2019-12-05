@@ -94,10 +94,9 @@ scene.addChild(star)
 - Callout(Experiment):
 Remove the comments below, one by one. Run the scene after each comment you remove. What happens?
  */
-
-square.physicsBody = SKPhysicsBody(texture: square.texture!, size: square.size)
-circle.physicsBody = SKPhysicsBody(texture: circle.texture!, size: circle.size)
-star.physicsBody = SKPhysicsBody(texture: star.texture!, size: star.size)
+square.physicsBody = SKPhysicsBody(texture: square.texture!, alphaThreshold: 0.1, size: square.size)
+circle.physicsBody = SKPhysicsBody(texture: circle.texture!, alphaThreshold: 0.1, size: circle.size)
+star.physicsBody = SKPhysicsBody(texture: star.texture!, alphaThreshold: 0.1, size: star.size)
 
 /*:
 ### More about physics bodies
@@ -117,3 +116,65 @@ star.physicsBody = SKPhysicsBody(texture: star.texture!, size: star.size)
  */
 // Make an edge loop at the boundaries of the scene
 scene.physicsBody = SKPhysicsBody(edgeLoopFrom: scene.frame)
+
+/*:
+ ### Create a lot of sand particles
+ 
+ This code repeatedly adds sand particles to the scene.
+ */
+
+// Drop a lot of sand particles from top of screen
+let actionRun = SKAction.run(spawnSand)
+let actionWait = SKAction.wait(forDuration: 1.0)
+let sequence = SKAction.sequence([actionRun, actionWait])
+let actionRepeat = SKAction.repeat(sequence, count: 100)
+scene.run(actionRepeat)
+
+
+/*:
+ ### Helper functions
+ 
+ These functions are used by the code above.
+ 
+ */
+// This function returns a random number
+public func random(min: CGFloat, max: CGFloat) -> CGFloat {
+    
+    // Get a random number between 0 and largest possible number for an unsigned 32-bit integer
+    let randomValue = arc4random()
+    
+    // Get a decimal value between 0 and 1 by dividing by largest possible number for an unsigned 32-bit integer
+    let decimal = Float(randomValue) / Float(UInt32.max)
+    
+    // Scale the decimal value to the range between max and min
+    let scaled = CGFloat(decimal) * (max - min)
+    
+    // Now push the random value into the desired range by adding the minimum value
+    return scaled + min
+    
+}
+
+// This function will add a sand sprite to the scene
+func spawnSand() {
+    
+    // Create a node from the sand image
+    let sand = SKSpriteNode(imageNamed: "sand")
+    
+    // Vertical position just above top of the scene
+    let y = scene.size.height - sand.size.height
+    // Horizontal position is randome
+    let x = random(min: 0.0, max: scene.size.width)
+    
+    // Set the grain of sand's position
+    sand.position = CGPoint(x: x, y: y)
+    
+    // Create a physics body for the grain of sand
+    sand.physicsBody = SKPhysicsBody(circleOfRadius:
+        sand.size.width/2)
+    
+    // Name the node
+    sand.name = "sand"
+    
+    // Add node to the scene
+    scene.addChild(sand)
+}
