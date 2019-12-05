@@ -188,4 +188,64 @@ let sequence = SKAction.sequence([actionRun, actionWait])
 let actionRepeat = SKAction.repeat(sequence, count: 100)
 scene.run(actionRepeat)
 
+/*:
+ ### Illustrate sprite movement
+ We can make sprites move, and because of the physics engine, movement will cause realistic interaction with other nodes in the scene.
+ */
+// Define a wait time of five seconds
+let actionFiveSecondWait = SKAction.wait(forDuration: 5.0)
+
+// Define a vector that describes a leftward movement
+let leftThisMuch = CGVector(dx: -300, dy: 0)
+
+// Define a vector that describes an upward movement
+let upThisMuch = CGVector(dx: 0, dy: 1000)
+
+// Define a leftward movement that is 2 seconds long
+let actionLeftwardMovement = SKAction.move(by: leftThisMuch, duration: 2)
+
+// Define an upwards movement that is 3 seconds long
+let actionUpwardsMovement = SKAction.move(by: upThisMuch, duration: 3)
+
+// Define a sequence that makes a node wait five seconds, then move left
+let sequenceMoveLeft = SKAction.sequence([actionFiveSecondWait, actionLeftwardMovement])
+
+// Define a sequence that makes a node wait for 10 seconds, then move up
+let sequenceMoveUpShortDelay = SKAction.sequence([actionFiveSecondWait, actionFiveSecondWait, actionUpwardsMovement])
+
+// Run the "move left" sequence on the star node
+star.run(sequenceMoveLeft)
+
+// Run the "move up" sequence on the circle node
+circle.run(sequenceMoveUpShortDelay)
+/*:
+- Callout(Consider):
+Why does the circle bounce around rather than move smoothly up?
+ */
+
+/*:
+### Act on all nodes of a certain type
+By using the name property for a node, we can run a sequence on all nodes at the same time.
+*/
+
+// Define a sequence that makes a node wait for 20 seconds, then move up
+let sequenceMoveUpLongDelay = SKAction.sequence([actionFiveSecondWait,
+                                                 actionFiveSecondWait,
+                                                 actionFiveSecondWait,
+                                                 actionFiveSecondWait,
+                                                 actionUpwardsMovement])
+
+// Loop through all the nodes in the scene
+for node in scene.children {
+    
+    // When the node is named "shape", run this code
+    if node.name == "shape" {
+        
+        // Run the action that causes the node to move up after 20 seconds
+        node.run(sequenceMoveUpLongDelay)
+        
+    }
+    
+}
+
 
