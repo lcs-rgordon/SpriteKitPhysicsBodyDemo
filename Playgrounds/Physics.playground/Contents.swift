@@ -101,24 +101,24 @@ scene.addChild(dash)
 - Callout(Experiment):
 Remove the comments for each block of code below, one by one. Run the scene after each comment you remove. What happens?
  */
-square.physicsBody = SKPhysicsBody(texture: square.texture!,
-                                   alphaThreshold: 0.1,
-                                   size: square.size)
+//square.physicsBody = SKPhysicsBody(texture: square.texture!,
+//                                   alphaThreshold: 0.1,
+//                                   size: square.size)
+//
+//circle.physicsBody = SKPhysicsBody(texture: circle.texture!,
+//                                   alphaThreshold: 0.1,
+//                                   size: circle.size)
+//
+//star.physicsBody = SKPhysicsBody(texture: star.texture!,
+//                                 alphaThreshold: 0.1,
+//                                 size: star.size)
+//
+//dash.physicsBody = SKPhysicsBody(texture: dash.texture!,
+//                                 alphaThreshold: 0.1,
+//                                 size: dash.size)
 
-circle.physicsBody = SKPhysicsBody(texture: circle.texture!,
-                                   alphaThreshold: 0.1,
-                                   size: circle.size)
-
-star.physicsBody = SKPhysicsBody(texture: star.texture!,
-                                 alphaThreshold: 0.1,
-                                 size: star.size)
-
-dash.physicsBody = SKPhysicsBody(texture: dash.texture!,
-                                 alphaThreshold: 0.1,
-                                 size: dash.size)
-
-// Make the dash not be affected by gravity
-dash.physicsBody?.affectedByGravity = false
+//// Make the dash not be affected by gravity
+//dash.physicsBody?.affectedByGravity = false
 /*:
 ### More about physics bodies
 "The circle body is a **dynamic** physics body — that is, it moves. It’s solid, has mass and can collide with any other type of physics body. The physics simulation can apply various forces to move volume-based bodies."
