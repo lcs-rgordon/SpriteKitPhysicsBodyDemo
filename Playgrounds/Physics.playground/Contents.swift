@@ -76,3 +76,21 @@ triangle.position = CGPoint(x: scene.size.width * 0.75,
 scene.addChild(square)
 scene.addChild(circle)
 scene.addChild(triangle)
+
+
+/*:
+ ### Physics bodies
+ One of the huge benefits that SpriteKit offers is a built-in physics engine.
+ 
+ That might sound complicated. It's simple, though – all you need to understand is that you can tell SpriteKit how you want a node to move (velocity), whether you want it to slow down (due to friction), and whether it is affected by gravity.
+ 
+ */
+// Define physics bodies based on their textures (images) and their current size
+// Essentially, this is defining the "edge" of the node (to allow for collision detection, for example)
+// STUDENTS: Remove the comments below, one by one. Run the scene after each comment you remove. What happens?
+
+//square.physicsBody = SKPhysicsBody(texture: square.texture!, size: square.size)
+//circle.physicsBody = SKPhysicsBody(texture: circle.texture!, size: circle.size)
+//triangle.physicsBody = SKPhysicsBody(texture: triangle.texture!, size: triangle.size)
+
+
