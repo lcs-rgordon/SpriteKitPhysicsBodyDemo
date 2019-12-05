@@ -53,7 +53,7 @@ PlaygroundSupport.PlaygroundPage.current.liveView = view
 let square = SKSpriteNode(imageNamed: "square")
 /*:
  - Callout(Naming nodes):
- By [naming nodes with the same identifier](https://developer.apple.com/documentation/spritekit/sknode/1483136-name) we can later "find" and "do something with" all nodes that share this identifer.
+ By [naming nodes with the same identifier](https://developer.apple.com/documentation/spritekit/sknode/1483136-name) we can later "find" and "do something with" all nodes that share this identifer. More on this later.
  */
 square.name = "shape"
 square.position = CGPoint(x: scene.size.width * 0.25,
@@ -92,19 +92,19 @@ scene.addChild(star)
  */
 /*:
 - Callout(Experiment):
-Remove the comments below, one by one. Run the scene after each comment you remove. What happens?
+Remove the comments for each block of code below, one by one. Run the scene after each comment you remove. What happens?
  */
-square.physicsBody = SKPhysicsBody(texture: square.texture!,
-                                   alphaThreshold: 0.1,
-                                   size: square.size)
+//square.physicsBody = SKPhysicsBody(texture: square.texture!,
+//                                   alphaThreshold: 0.1,
+//                                   size: square.size)
 
-circle.physicsBody = SKPhysicsBody(texture: circle.texture!,
-                                   alphaThreshold: 0.1,
-                                   size: circle.size)
+//circle.physicsBody = SKPhysicsBody(texture: circle.texture!,
+//                                   alphaThreshold: 0.1,
+//                                   size: circle.size)
 
-star.physicsBody = SKPhysicsBody(texture: star.texture!,
-                                 alphaThreshold: 0.1,
-                                 size: star.size)
+//star.physicsBody = SKPhysicsBody(texture: star.texture!,
+//                                 alphaThreshold: 0.1,
+//                                 size: star.size)
 
 /*:
 ### More about physics bodies
@@ -118,12 +118,16 @@ star.physicsBody = SKPhysicsBody(texture: star.texture!,
  
  *Excerpts and image from:* [2D Apple Games by Tutorials, raywenderlich.com](https://store.raywenderlich.com/products/2d-apple-games-by-tutorials)
 
- Try uncommenting the line below the "Make an edge loop at the boundaries of the scene" comment.
+ - Callout(Experiment):
+    Try uncommenting the line below the "Make an edge loop at the boundaries of the scene" comment.
  
- What happens to the circle now?
+    What happens to the circle now?
+ 
+ 
+ 
  */
 // Make an edge loop at the boundaries of the scene
-scene.physicsBody = SKPhysicsBody(edgeLoopFrom: scene.frame)
+//scene.physicsBody = SKPhysicsBody(edgeLoopFrom: scene.frame)
 
 /*:
  ### Helper functions
@@ -208,10 +212,13 @@ let actionLeftwardMovement = SKAction.move(by: leftThisMuch, duration: 2)
 let actionUpwardsMovement = SKAction.move(by: upThisMuch, duration: 3)
 
 // Define a sequence that makes a node wait five seconds, then move left
-let sequenceMoveLeft = SKAction.sequence([actionFiveSecondWait, actionLeftwardMovement])
+let sequenceMoveLeft = SKAction.sequence([actionFiveSecondWait,
+                                          actionLeftwardMovement])
 
 // Define a sequence that makes a node wait for 10 seconds, then move up
-let sequenceMoveUpShortDelay = SKAction.sequence([actionFiveSecondWait, actionFiveSecondWait, actionUpwardsMovement])
+let sequenceMoveUpShortDelay = SKAction.sequence([actionFiveSecondWait,
+                                                  actionFiveSecondWait,
+                                                  actionUpwardsMovement])
 
 // Run the "move left" sequence on the star node
 star.run(sequenceMoveLeft)
@@ -221,9 +228,7 @@ circle.run(sequenceMoveUpShortDelay)
 /*:
 - Callout(Consider):
 Why does the circle bounce around rather than move smoothly up?
- */
 
-/*:
 ### Act on all nodes of a certain type
 By using the name property for a node, we can run a sequence on all nodes at the same time.
 */
